@@ -1,0 +1,7 @@
+*.pyc
+*.db
+local_settings.py
+.coverage
+htmlcov/
+.nose*
+.DS_Store
