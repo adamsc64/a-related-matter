@@ -11,7 +11,7 @@ class Blog(models.Model):
 
 
 class Post(models.Model):
-    blog = models.ForeignKey('blog.Blog')
+    blog = models.ForeignKey('blog.Blog', related_name="posts")
     likers = models.ManyToManyField('auth.User')
     body = models.TextField()
     name = models.TextField()

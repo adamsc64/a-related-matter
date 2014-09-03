@@ -25,8 +25,9 @@ def create_sample(num_users=20,
         blog.save()
         for i in range(0, num_posts_per_blog)
         post = Post.objects.create(body=text, blog=blog)
-        for u in User.objects.all():
-            post.likers.add(u)
+        for u in users:
+            if random.choice(range(0,6)) == 0:
+                post.likers.add(u)
     for post in Post.objects.all():
         post.name = random.choice(text.split())
         post.save()

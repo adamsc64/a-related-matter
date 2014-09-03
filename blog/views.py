@@ -4,13 +4,19 @@ from django.shortcuts import get_object_or_404, render
 
 def blog_list(request):
     blogs = Blog.objects.all()
-    submitters = []
+    if request.GET.get("optimized") == "true":
+        blogs = blogs.select_related("submitter")
+        blogs = blogs.prefetch_related("posts", "posts__likers")
+    datasets = []
     for blog in blogs:
         submitter = blog.submitter
-        submitters.append(submitter)
+        posts = list(blog.posts.all())
+        datasets.append({"blog": blog,
+                         "submitter": submitter,
+                         "posts": posts,
+                         })
     return render(request, "blog/blog_list.html", {
-        "submitters": submitters,
-        "blogs": blogs,
+        "datasets": datasets,
     })
 
 
@@ -23,7 +29,7 @@ def blog_detail(request, blog_id):
     for comment in blog.comments:
         comments.append(comment)
     return render(request, "blog/blog_detail.html", {
-        "blog": submitters,
+        "blog": blog,
         "likers": likers,
         "comments": comments,
     })
