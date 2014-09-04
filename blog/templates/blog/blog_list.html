@@ -2,26 +2,14 @@
 <body>
 <h1>Blogs:</h1>
 <ul>
-{% for dataset in datasets %}
-    <li>{{ dataset.blog.name }}
-    <ul>
-    {% for post in dataset.posts %}
-        <li>{{ post.name }} [Liked by {% for liker in post.likers.all %}{{ liker.username}} {% endfor %}]
-        <ul>
-        {% for comment in post.comments %}
-            <li>{{ comment|truncatechars:10 }}</li>
-        {% endfor %}
-        </ul>
-        </li>
-    {% endfor %}
-    </ul>
+{% for blog in blogs %}
+    <li>
+        <a href="{% url 'blog_detail' blog.id %}">
+            {{ blog.name }}
+        </a>
+        | submitted by {{ blog.submitter.username }}
     </li>
 {% endfor %}
 </ul>
-<p>Contributors to these blogs:
-    {% for submitter in submitters %}
-        {{ submitter.username }},
-    {% endfor %}
-</p>
 </body>
 </html>

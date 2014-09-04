@@ -1,0 +1,23 @@
+<html>
+<body>
+<h1>Blog '{{ blog.name }}' by {{ blog.submitter.username }}:</h1>
+<ul>
+{% for post in posts %}
+    <li>Post '{{ post.name }}'
+        {% if post.likers.exists %}
+        (liked by
+        {% for liker in post.likers.all %}
+            {{ liker.username }}
+        {% endfor %})
+        {% endif %}
+        <ul>
+        {% for comment in post.comments.all %}
+            <li>Comment by {{ comment.submitter.username }}:
+                {{ comment.body|truncatechars:60 }}</li>
+        {% endfor %}
+        </ul>
+    </li>
+{% endfor %}
+</ul>
+</body>
+</html>

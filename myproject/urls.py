@@ -10,8 +10,8 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^blog/$', views.blog_list, name="blog_list"),
-    url(r'^blog/(?P<blog_id>[0-9]+)$', views.blog_detail, name="blog_detail"),
+    url(r'^$', views.blog_list, name="blog_list"),
+    url(r'^blog/(?P<blog_id>[0-9]+)/$', views.blog_detail, name="blog_detail"),
 )
 
 # Serve debug toolbar.

@@ -22,7 +22,7 @@ class Post(models.Model):
 
 class PostComment(models.Model):
     submitter = models.ForeignKey('auth.User')
-    post = models.ForeignKey('blog.Post')
+    post = models.ForeignKey('blog.Post', related_name="comments")
     body = models.TextField()
 
     def __str__(self):
