@@ -1,4 +1,4 @@
-# All My Relations: Optimizing your webapp by using django-debug-toolbar, select_related(), and prefetch_related()
+# A Related Matter: Optimizing your webapp by using django-debug-toolbar, select_related(), and prefetch_related()
 
 ## Christopher Adams
 ## DjangoCon 2014
