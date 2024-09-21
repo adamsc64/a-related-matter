@@ -1,7 +1,7 @@
-# Django settings for blog project.
-
 import json
+import os
 import os.path
+
 PROJECT_ROOT = os.path.join(os.path.dirname(__file__), '..')
 
 DEBUG = True
@@ -11,8 +11,6 @@ ADMINS = (
 )
 
 MANAGERS = ADMINS
-
-import os
 
 DATABASES = {
     'default': {
@@ -24,6 +22,8 @@ DATABASES = {
         'PORT': os.getenv('POSTGRES_PORT'),
     }
 }
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 RAVEN_CONFIG = None  # Override in local settings.
 
