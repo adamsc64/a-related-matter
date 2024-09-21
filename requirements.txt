@@ -1,4 +1,4 @@
-django==1.6.7
-psycopg2==2.5.4
-django-debug-toolbar==1.2.1
+django-debug-toolbar==4.4.6
+Django==4.2.16
 ipdb==0.13.13
+psycopg2==2.9.9
