@@ -4,7 +4,7 @@ import json
 import os.path
 PROJECT_ROOT = os.path.join(os.path.dirname(__file__), '..')
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -13,7 +13,18 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASES = {}
+import os
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('POSTGRES_DB'),
+        'USER': os.getenv('POSTGRES_USER'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+        'HOST': os.getenv('POSTGRES_HOST'),
+        'PORT': os.getenv('POSTGRES_PORT'),
+    }
+}
 
 RAVEN_CONFIG = None  # Override in local settings.
 
@@ -141,6 +152,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 try:
-    from local_settings import *  # NOQA
+    from myproject.local_settings import *  # NOQA
 except ImportError:
     pass
