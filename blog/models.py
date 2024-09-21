@@ -3,7 +3,7 @@ from django.conf import settings
 
 
 class Blog(models.Model):
-    submitter = models.ForeignKey('auth.User')
+    submitter = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     name = models.TextField()
 
     def __str__(self):
@@ -11,7 +11,7 @@ class Blog(models.Model):
 
 
 class Post(models.Model):
-    blog = models.ForeignKey('blog.Blog', related_name="posts")
+    blog = models.ForeignKey('blog.Blog', on_delete=models.CASCADE, related_name="posts")
     likers = models.ManyToManyField('auth.User')
     body = models.TextField()
     name = models.TextField()
@@ -21,8 +21,8 @@ class Post(models.Model):
 
 
 class PostComment(models.Model):
-    submitter = models.ForeignKey('auth.User')
-    post = models.ForeignKey('blog.Post', related_name="comments")
+    submitter = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    post = models.ForeignKey('blog.Post', on_delete=models.CASCADE, related_name="comments")
     body = models.TextField()
 
     def __str__(self):
