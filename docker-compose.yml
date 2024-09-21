@@ -13,6 +13,8 @@ services:
   web:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
+    stdin_open: true        # For ipdb: keep the STDIN open to allow interaction
+    tty: true               # For ipdb: allocate a pseudo-TTY for interaction
     volumes:
       - .:/app
     ports:
