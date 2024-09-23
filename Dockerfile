@@ -12,6 +12,8 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y \
     libpq-dev \
     build-essential \
+    default-mysql-client \
+    postgresql-client \
     && rm -rf /var/lib/apt/lists/*
 
 # Install dependencies
